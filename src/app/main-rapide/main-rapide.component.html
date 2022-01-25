@@ -1,0 +1,20 @@
+<div class="logo">
+  <h1><span id="logo-1">Main Rapide </span><br><span id="logo-2">The new Fast finger</span></h1>
+</div>
+
+<main>
+  <div class="container">
+    <p class="textTowrite" id="textTowrite"></p>
+    <div class="Writing">
+       <input type="text" name="WritingTextInput" id="WritingTextInput"  #WritingTextInput (keyup.Space)="onSpaceWrite(WritingTextInput.value)">
+      <button class="btn-reset" (click)="onClickFillText()"><i style="color: white;" class="fas fa-sync-alt fa-2x "></i></button>
+    </div>
+    <div id="SomeWord">
+      <p style="font-size:30px">{{value}}</p>
+    </div>
+    <div id="test">
+      <p id="BigText"></p>
+    </div>
+
+  </div>
+</main>
