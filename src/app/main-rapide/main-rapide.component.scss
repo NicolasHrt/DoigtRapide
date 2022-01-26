@@ -13,14 +13,14 @@
 
 .container{
   margin-left: 2rem;
-
+  width: 50%;
   .textTowrite
   {
     white-space:normal;
     overflow: hidden;
     padding: 0.5rem 1rem 0.5rem 1rem;
     margin-bottom: 1rem;
-    width: 50%;
+
     border: solid black ;
     box-shadow: lightgray 4px 4px 20px;
     border-radius: 5px;
@@ -33,7 +33,6 @@
     display: flex;
     justify-content: center;
     padding: 5px 5px;
-    width: 50%;
     border-radius: 5px;
     box-shadow: lightgray 4px 4px 20px;
 
@@ -58,9 +57,47 @@
       padding: 15px 15px;
     }
   }
+  #Result{
+    animation: 1s opacityChange;
+    margin:10px auto;
+    width: 40%;
+    border: #5db761 solid 3px;
+    border-radius: 5px;
+    font-size: 30px;
+    text-align: center;
+  }
 }
 
+.typing-demo {
+  width: 12.1ch;
+  animation: typing 1.4s steps(12), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
 
+}
+
+@keyframes typing {
+  from {
+    width: 0px;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+
+@keyframes opacityChange {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
 
 
 

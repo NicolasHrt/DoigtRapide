@@ -7,39 +7,78 @@ import {WordsService} from '../words.service'
   styleUrls: ['./main-rapide.component.scss']
 })
 export class MainRapideComponent implements OnInit {
-  public value!: string;
-  wordsArray : any;
+  public actualWord: string;
+  public wordsArray : string[];
+  public correctWords: number;
+  public endGame:boolean;
+  public result!:number;
   wordIndex: number;
 
-  newWord(){
-
-    this.randomWordService.getWords(60).subscribe(data=>{
+ /* newWord():any{
+    this.randomWordService.getWords(10).subscribe(data=>{
       this.wordsArray = data;
     });
-  }
+  }*/
 
-  onSpaceWrite(word:string) {
-
-    this.value = word;
-    var wordToWrite = this.wordsArray[this.wordIndex];
-    (<HTMLInputElement>document.getElementById("WritingTextInput")).value='';
-    console.log(this.wordIndex);
-    if(word===wordToWrite){
-      console.log('Nice');
-    }
-    console.log(word);
-    console.log(wordToWrite);
+  NextWord(word:string) {
+    this.actualWord = word.trim();
+    let wordToWrite = this.wordsArray[this.wordIndex];
+    let idWordToWrite = 'word-'+this.wordIndex;
+    let HtmlwordToWrite = document.getElementById(idWordToWrite);
     this.wordIndex++;
-    console.log(this.wordsArray);
+
+    console.log(this.actualWord);
+    console.log(wordToWrite);
+    if(this.actualWord === wordToWrite){
+      console.log('Coool!');
+      // @ts-ignore
+      HtmlwordToWrite.classList.add('correct');
+      this.correctWords++;
+    }
+    else{
+      // @ts-ignore
+      HtmlwordToWrite.classList.add('wrong');
+    }
+
+    if(this.wordIndex === this.wordsArray.length) {
+      let result=(this.correctWords*100)/this.wordsArray.length;
+      this.result= Math.round(result);
+      this.endGame=true;
+    }
+
+    // @ts-ignore
+    HtmlwordToWrite.classList.remove('currentWord');
+    // @ts-ignore
+    HtmlwordToWrite.classList.remove('currentWordWrong');
+    this.actualWord='';
+    (<HTMLInputElement>document.getElementById("WritingTextInput")).value='';
   }
+
+  VerifyWord(word:string){
+    this.actualWord =word.trim();
+    let wordToWrite = this.wordsArray[this.wordIndex];
+    let idWordToWrite = 'word-'+this.wordIndex;
+    let HtmlwordToWrite = document.getElementById(idWordToWrite);
+    // @ts-ignore
+    HtmlwordToWrite.classList.add('currentWord');
+    if(!wordToWrite.includes(this.actualWord)){
+      // @ts-ignore
+      HtmlwordToWrite.classList.add('currentWordWrong');
+    }
+    else{
+      // @ts-ignore
+      HtmlwordToWrite.classList.remove('currentWordWrong');
+    }
+  }
+
 
   onClickFillText(){
+    this.endGame=false;
     this.wordIndex=0;
-    this.newWord();
-    var index = 0;
+    let index = 0;
     (<HTMLInputElement>document.getElementById("textTowrite")).innerHTML='';
     for(let word of this.wordsArray){
-      var Wordindex = 'word-' + index;
+      let Wordindex = 'word-' + index;
       const spanWord = document.createElement("span");
       spanWord.innerHTML = word;
       spanWord.classList.add('word');
@@ -54,6 +93,10 @@ export class MainRapideComponent implements OnInit {
 
   constructor(private randomWordService: WordsService) {
     this.wordIndex=0;
+    this.actualWord='';
+    this.wordsArray = ['Premier','il', 'raconte', 'simple','beau','connaître','contre','savoir','mort','reprendre','dans', 'voir'];
+    this.correctWords=0;
+    this.endGame=false;
 
 
   }

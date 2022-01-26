@@ -1,20 +1,21 @@
 <div class="logo">
-  <h1><span id="logo-1">Main Rapide </span><br><span id="logo-2">The new Fast finger</span></h1>
+  <h1 ><div class="typing-demo" id="logo-1" >Doigt Rapide </div><span id="logo-2">The new Fast finger <span style="font-size:25px;font-weight: 500">(but it is unplayable)</span></span></h1>
 </div>
 
 <main>
   <div class="container">
     <p class="textTowrite" id="textTowrite"></p>
     <div class="Writing">
-       <input type="text" name="WritingTextInput" id="WritingTextInput"  #WritingTextInput (keyup.Space)="onSpaceWrite(WritingTextInput.value)">
+       <input type="text" name="WritingTextInput" id="WritingTextInput"  #WritingTextInput (keyup.Space)="NextWord(WritingTextInput.value)" (input)="VerifyWord(WritingTextInput.value)">
       <button class="btn-reset" (click)="onClickFillText()"><i style="color: white;" class="fas fa-sync-alt fa-2x "></i></button>
     </div>
     <div id="SomeWord">
-      <p style="font-size:30px">{{value}}</p>
+      <p style="font-size:30px">{{actualWord}}</p>
     </div>
-    <div id="test">
-      <p id="BigText"></p>
+    <div *ngIf="endGame ==true" id="Result">
+      <p>Result : {{result}} % of Accuracy</p>
     </div>
-
   </div>
 </main>
+
+
