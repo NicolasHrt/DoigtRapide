@@ -30,7 +30,6 @@ export class MainRapideComponent implements OnInit {
     console.log(this.actualWord);
     console.log(wordToWrite);
     if(this.actualWord === wordToWrite){
-      console.log('Coool!');
       // @ts-ignore
       HtmlwordToWrite.classList.add('correct');
       this.correctWords++;
@@ -52,6 +51,12 @@ export class MainRapideComponent implements OnInit {
     HtmlwordToWrite.classList.remove('currentWordWrong');
     this.actualWord='';
     (<HTMLInputElement>document.getElementById("WritingTextInput")).value='';
+
+    let NextidWordToWrite = 'word-'+this.wordIndex;
+    let NextHtmlwordToWrite = document.getElementById(NextidWordToWrite);
+    // @ts-ignore
+    NextHtmlwordToWrite.classList.add('currentWord');
+
   }
 
   VerifyWord(word:string){
@@ -59,8 +64,6 @@ export class MainRapideComponent implements OnInit {
     let wordToWrite = this.wordsArray[this.wordIndex];
     let idWordToWrite = 'word-'+this.wordIndex;
     let HtmlwordToWrite = document.getElementById(idWordToWrite);
-    // @ts-ignore
-    HtmlwordToWrite.classList.add('currentWord');
     if(!wordToWrite.includes(this.actualWord)){
       // @ts-ignore
       HtmlwordToWrite.classList.add('currentWordWrong');
@@ -76,25 +79,30 @@ export class MainRapideComponent implements OnInit {
     this.endGame=false;
     this.wordIndex=0;
     let index = 0;
+    let first = true;
     (<HTMLInputElement>document.getElementById("textTowrite")).innerHTML='';
     for(let word of this.wordsArray){
+
       let Wordindex = 'word-' + index;
       const spanWord = document.createElement("span");
       spanWord.innerHTML = word;
       spanWord.classList.add('word');
+      if(first){
+        spanWord.classList.add('currentWord');
+        first=false;
+      }
       spanWord.setAttribute('id',Wordindex);
       const element = document.getElementById("textTowrite");
       // @ts-ignore
       element.appendChild(spanWord);
       index++;
     }
-    console.log(this.wordsArray);
   }
 
   constructor(private randomWordService: WordsService) {
     this.wordIndex=0;
     this.actualWord='';
-    this.wordsArray = ['Premier','il', 'raconte', 'simple','beau','connaître','contre','savoir','mort','reprendre','dans', 'voir'];
+    this.wordsArray = ['Premier','il', 'raconte', 'simple','beau','connaître','contre','savoir','mort','reprendre','dans', 'homme','verre'];
     this.correctWords=0;
     this.endGame=false;
 
