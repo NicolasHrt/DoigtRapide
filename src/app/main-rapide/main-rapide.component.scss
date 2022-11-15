@@ -1,6 +1,7 @@
 .logo{
-  padding: 2rem 0 5rem 5rem;
-
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 0;
   #logo-1{
     font-size: 4rem;
     font-weight: 600;
@@ -12,8 +13,9 @@
 }
 
 .container{
-  margin: 0 2rem;
-  width: 1000px;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0 2rem;
   .textTowrite
   {
     overflow-wrap: break-word;

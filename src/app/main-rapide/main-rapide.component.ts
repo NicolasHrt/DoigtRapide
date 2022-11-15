@@ -98,7 +98,7 @@ export class MainRapideComponent implements OnInit {
   constructor(private randomWordService: WordsService) {
     this.wordIndex=0;
     this.actualWord='';
-    this.wordsArray = ['Premier','il', 'raconte', 'simple','beau','connaître','contre','savoir','mort','reprendre','dans', 'homme','verre','lequel','nouveau','quelque','avant','ami','ce','monde',];
+    this.wordsArray = ['those','she', 'she', 'something','earth','found','does','people','man','around','got', 'me','to','point','were','mother','again','large','from','city',];
     this.correctWords=0;
     this.endGame=false;
 

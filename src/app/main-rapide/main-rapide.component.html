@@ -1,17 +1,16 @@
-<div class="logo">
-  <h1 ><div class="typing-demo" id="logo-1" >Slow finger</div><span id="logo-2">The new Fast finger <span style="font-size:25px;font-weight: 500">(but it is unplayable)</span></span></h1>
-</div>
-
 <main>
   <div class="container">
+    <div class="logo">
+      <h1 ><div class="typing-demo" id="logo-1" >Slow finger</div><span id="logo-2">The new Fast finger <span style="font-size:25px;font-weight: 500">(but it is unplayable)</span></span></h1>
+    </div>
     <p class="textTowrite" id="textTowrite"></p>
     <div class="Writing">
        <input type="text" name="WritingTextInput" id="WritingTextInput"  #WritingTextInput (keyup.Space)="NextWord(WritingTextInput.value)" (input)="VerifyWord(WritingTextInput.value)">
       <button class="btn-reset" (click)="Reset()"><i style="color: white;" class="fas fa-sync-alt fa-2x "></i></button>
     </div>
-    <div id="SomeWord">
+    <!-- <div id="SomeWord">
       <p style="font-size:30px">{{actualWord}}</p>
-    </div>
+    </div> -->
     <div *ngIf="endGame ==true" id="Result">
       <p>Result : {{result}} % of Accuracy</p>
     </div>
